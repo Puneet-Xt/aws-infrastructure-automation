@@ -1,578 +1,177 @@
-\# 🚀 AWS Infrastructure Automation using Terraform
+# 🚀 AWS Infrastructure Automation using Terraform
 
+> Production-style AWS Infrastructure as Code (IaC) project built with Terraform, featuring modular architecture, remote state management, monitoring, alerting, and infrastructure automation.
 
+---
 
-> Provisioning AWS infrastructure using Terraform with modular architecture, remote state management, IAM integration, and CI validation through GitHub Actions.
+# 📖 Project Overview
 
+This project demonstrates how to provision and manage AWS infrastructure using Terraform following Infrastructure as Code (IaC) best practices.
 
+---
 
-!\[Terraform](https://img.shields.io/badge/Terraform-IaC-blueviolet)
+# 🏗️ Architecture
 
-!\[AWS](https://img.shields.io/badge/AWS-Cloud-orange)
+(Architecture Diagram Here)
 
-!\[GitHub Actions](https://img.shields.io/badge/GitHub-Actions-blue)
+---
 
-!\[CI](https://img.shields.io/badge/CI-Passing-brightgreen)
+# ✨ Features
 
+✅ Modular Terraform Design
 
+✅ AWS VPC
 
-\---
-
-
-
-\# 📖 Project Overview
-
-
-
-This project demonstrates a real-world Infrastructure as Code (IaC) implementation using Terraform on AWS.
-
-
-
-The infrastructure is provisioned using reusable Terraform modules and follows industry best practices such as:
-
-
-
-\* Modular Terraform Design
-
-\* Remote State Management
-
-\* State Locking
-
-\* IAM Role-Based Access
-
-\* Infrastructure Automation
-
-\* CI Validation using GitHub Actions
-
-
-
-The objective is to automate AWS infrastructure deployment while maintaining scalability, consistency, and version control.
-
-
-
-\---
-
-
-
-\# 🏗️ Architecture
-
-
-
-```text
-
-GitHub Repository
-
-&#x20;       │
-
-&#x20;       ▼
-
-&#x20;GitHub Actions CI
-
-&#x20;       │
-
-&#x20;       ▼
-
-&#x20;Terraform Validate
-
-&#x20;       │
-
-&#x20;       ▼
-
-&#x20;┌─────────────────────────┐
-
-&#x20;│        Terraform        │
-
-&#x20;└─────────────────────────┘
-
-&#x20;       │
-
-&#x20;       ▼
-
-&#x20;┌─────────────────────────┐
-
-&#x20;│         AWS VPC         │
-
-&#x20;└─────────────────────────┘
-
-&#x20;     │             │
-
-&#x20;     ▼             ▼
-
-Public Subnet   Private Subnet
-
-&#x20;     │
-
-&#x20;     ▼
-
-&#x20;EC2 Instance
-
-&#x20;     │
-
-&#x20;     ▼
-
-&#x20;IAM Role \& Profile
-
-
-
-Terraform State
-
-&#x20;     │
-
-&#x20;     ▼
-
-&#x20;S3 Backend
-
-&#x20;     │
-
-&#x20;     ▼
-
-&#x20;DynamoDB Locking
-
-```
-
-
-
-\---
-
-
-
-\# ✨ Features
-
-
-
-✅ Modular Terraform Architecture
-
-
-
-✅ Custom AWS VPC
-
-
-
-✅ Public \& Private Subnets
-
-
+✅ Public and Private Subnets
 
 ✅ Internet Gateway
 
-
-
-✅ Route Tables \& Associations
-
-
+✅ Route Tables
 
 ✅ Security Groups
 
-
-
 ✅ EC2 Provisioning
 
+✅ IAM Roles & Instance Profiles
 
-
-✅ IAM Roles \& Instance Profiles
-
-
-
-✅ S3 Remote State Storage
-
-
+✅ Remote State Storage using S3
 
 ✅ DynamoDB State Locking
 
+✅ AWS Systems Manager (SSM)
 
+✅ CloudWatch Agent Monitoring
 
-✅ GitHub Actions CI Pipeline
+✅ CloudWatch Metrics Collection
 
+✅ CloudWatch Alarms
 
+✅ SNS Email Notifications
 
-✅ Infrastructure as Code (IaC)
+✅ GitHub Actions CI Validation
 
+---
 
+# 📂 Project Structure
 
-\---
+(Project Structure Tree)
 
+---
 
+# 🔧 Infrastructure Components
 
-\# 📂 Project Structure
+## 🌐 VPC Module
 
+## 🔒 Security Group Module
 
+## 👤 IAM Module
 
-```text
+## 🖥️ EC2 Module
 
-aws-infrastructure-automation/
+---
 
-│
+# 🗄️ Remote State Management
 
-├── .github/
+## ☁️ Amazon S3 Backend
 
-│   └── workflows/
+## 🔐 DynamoDB State Locking
 
-│       └── terraform.yml
+---
 
-│
+# 📊 Monitoring & Alerting
 
-├── terraform/
+## 📈 Monitored Metrics
 
-│   │
+* Memory Utilization
+* Disk Usage
+* Disk I/O
+* Swap Usage
 
-│   ├── environments/
+## 🚨 Alert Workflow
 
-│   │   └── dev/
+EC2 → CloudWatch Agent → CloudWatch Metrics → CloudWatch Alarm → SNS → Email
 
-│   │       ├── backend.tf
+---
 
-│   │       ├── main.tf
+# ⚙️ CI Pipeline
 
-│   │       ├── outputs.tf
-
-│   │       ├── providers.tf
-
-│   │       └── versions.tf
-
-│   │
-
-│   └── modules/
-
-│       ├── ec2/
-
-│       ├── iam/
-
-│       ├── security-groups/
-
-│       └── vpc/
-
-│
-
-├── screenshots/
-
-│
-
-└── README.md
-
-```
-
-
-
-\---
-
-
-
-\# 🔧 Infrastructure Components
-
-
-
-\## 🌐 VPC Module
-
-
-
-Creates:
-
-
-
-\* AWS VPC
-
-\* Public Subnet
-
-\* Private Subnet
-
-\* Internet Gateway
-
-\* Route Tables
-
-\* Route Associations
-
-
-
-\---
-
-
-
-\## 🔐 Security Group Module
-
-
-
-Creates:
-
-
-
-\* Inbound Rules
-
-\* Outbound Rules
-
-\* EC2 Security Group
-
-
-
-\---
-
-
-
-\## 👤 IAM Module
-
-
-
-Creates:
-
-
-
-\* IAM Role
-
-\* IAM Instance Profile
-
-\* CloudWatch Permissions
-
-
-
-\---
-
-
-
-\## 🖥️ EC2 Module
-
-
-
-Creates:
-
-
-
-\* Amazon Linux EC2 Instance
-
-\* IAM Instance Profile Attachment
-
-
-
-\---
-
-
-
-\# 🗄️ Remote State Management
-
-
-
-Terraform state is stored securely in Amazon S3.
-
-
-
-\### Benefits
-
-
-
-\* Centralized State Storage
-
-\* Team Collaboration
-
-\* Versioning Support
-
-\* Disaster Recovery
-
-
-
-\### State Locking
-
-
-
-Amazon DynamoDB is used to prevent concurrent Terraform executions and state corruption.
-
-
-
-\---
-
-
-
-\# ⚙️ CI Pipeline
-
-
-
-GitHub Actions automatically validates Terraform code whenever changes are pushed.
-
-
-
-\### Pipeline Steps
-
-
-
-```text
+## 🔄 GitHub Actions Workflow
 
 Checkout Code
-
-&#x20;     ↓
-
+↓
 Terraform Setup
-
-&#x20;     ↓
-
-Terraform Format Check
-
-&#x20;     ↓
-
+↓
+Terraform Fmt
+↓
 Terraform Init
-
-&#x20;     ↓
-
+↓
 Terraform Validate
 
-```
+---
 
-
-
-\### CI Status
-
-
-
-✅ Automated Validation
-
-
-
-✅ Infrastructure Quality Checks
-
-
-
-✅ GitHub Actions Integration
-
-
-
-\---
-
-
-
-\# 🛠️ Technologies Used
-
-
+# 🛠️ Technologies Used
 
 | Technology     | Purpose                |
-
 | -------------- | ---------------------- |
-
 | Terraform      | Infrastructure as Code |
-
-| AWS            | Cloud Infrastructure   |
-
-| Git            | Version Control        |
-
-| GitHub         | Source Code Management |
-
+| AWS            | Cloud Platform         |
+| EC2            | Compute                |
+| IAM            | Access Management      |
+| CloudWatch     | Monitoring             |
+| SNS            | Notifications          |
+| SSM            | Instance Management    |
+| S3             | Remote State Backend   |
+| DynamoDB       | State Locking          |
 | GitHub Actions | CI Automation          |
 
-| EC2            | Compute                |
+---
 
-| VPC            | Networking             |
+# 📸 Screenshots
 
-| IAM            | Access Control         |
+## 🖥️ EC2 Instance
 
-| S3             | Remote State Backend   |
+## ☁️ S3 Backend
 
-| DynamoDB       | State Locking          |
+## 🔐 DynamoDB State Lock
 
+## 💻 SSM Session Manager
 
+## 📊 CloudWatch Metrics
 
-\---
+## 📢 SNS Topic
 
+## 🚨 CloudWatch Alarm
 
+---
 
-\# 📸 Screenshots
+# 🎯 Key Learning Outcomes
 
+* Infrastructure as Code (IaC)
+* Terraform Modules
+* AWS Networking
+* IAM Management
+* CloudWatch Monitoring
+* SNS Alerting
+* SSM Administration
+* GitHub Actions CI
+* Infrastructure Automation
 
+---
 
-\## GitHub Actions Pipeline
+# 🔮 Future Enhancements
 
+* Multi-Environment Deployment (Dev/Stage/Prod)
+* Auto Scaling Group Integration
+* Terraform Deployment Pipeline
+* AWS Config Compliance Checks
+* Cost Optimization Monitoring
 
+---
 
-\*Add Screenshot Here\*
+# 👨‍💻 Author
 
+**Puneet Choudhary**
 
-
-\---
-
-
-
-\## Terraform Apply Output
-
-
-
-\*Add Screenshot Here\*
-
-
-
-\---
-
-
-
-\## AWS Infrastructure
-
-
-
-\*Add Screenshot Here\*
-
-
-
-\---
-
-
-
-\# 🎯 Key Learning Outcomes
-
-
-
-Through this project I gained hands-on experience with:
-
-
-
-\* Infrastructure as Code (IaC)
-
-\* Terraform Modules
-
-\* AWS Networking
-
-\* IAM Management
-
-\* State Management
-
-\* CI/CD Fundamentals
-
-\* GitHub Actions
-
-\* Cloud Infrastructure Automation
-
-
-
-\---
-
-
-
-\# 🚀 Future Enhancements
-
-
-
-\* CloudWatch Monitoring Dashboard
-
-\* CloudWatch Agent Configuration
-
-\* NAT Instance Deployment
-
-\* Multi-Environment Support (Dev/Prod)
-
-\* Automated Terraform Deployment Workflow
-
-\* Cost Monitoring \& Alerts
-
-
-
-\---
-
-
-
-\# 👨‍💻 Author
-
-
-
-\*\*Puneet Choudhary\*\*
-
-
-
-Cloud | DevOps | AWS | Terraform Enthusiast
-
-
+☁️ Cloud | ⚙️ DevOps | 🚀 AWS | 🏗️ Terraform
 
 ⭐ If you found this project useful, consider giving it a star.
-
-
-
