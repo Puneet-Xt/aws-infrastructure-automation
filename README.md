@@ -10,9 +10,44 @@ This project demonstrates how to provision and manage AWS infrastructure using T
 
 ---
 
-# 🏗️ Architecture
+## 🏗️ Architecture
 
-(Architecture Diagram Here)
+```text
+GitHub Repository
+        │
+        ▼
+GitHub Actions CI
+        │
+        ▼
+Terraform Validate
+        │
+        ▼
+┌─────────────────────────┐
+│        Terraform        │
+└─────────────────────────┘
+        │
+        ▼
+┌─────────────────────────┐
+│         AWS VPC         │
+└─────────────────────────┘
+      │             │
+      ▼             ▼
+ Public Subnet   Private Subnet
+      │
+      ▼
+ EC2 Instance
+      │
+      ▼
+ IAM Role & Profile
+
+Terraform State
+      │
+      ▼
+S3 Backend
+      │
+      ▼
+DynamoDB Locking
+```
 
 ---
 
@@ -52,9 +87,34 @@ This project demonstrates how to provision and manage AWS infrastructure using T
 
 ---
 
-# 📂 Project Structure
+## 📁 Project Structure
 
-(Project Structure Tree)
+```text
+aws-infrastructure-automation/
+│
+├── .github/
+│   └── workflows/
+│       └── terraform.yml
+│
+├── terraform/
+│   ├── environments/
+│   │   └── dev/
+│   │       ├── backend.tf
+│   │       ├── main.tf
+│   │       ├── outputs.tf
+│   │       ├── providers.tf
+│   │       └── versions.tf
+│   │
+│   └── modules/
+│       ├── ec2/
+│       ├── iam/
+│       ├── security-groups/
+│       └── vpc/
+│
+├── screenshots/
+│
+└── README.md
+```
 
 ---
 
