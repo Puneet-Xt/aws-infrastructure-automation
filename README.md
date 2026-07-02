@@ -230,7 +230,7 @@ Terraform Validate
 
 # 👨‍💻 Author
 
-**Puneet Choudhary**
+**Puneet Kumar**
 
 ☁️ Cloud | ⚙️ DevOps | 🚀 AWS | 🏗️ Terraform
 
